@@ -1,0 +1,80 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Ürün Listesi</h2>
+    </div>
+    <div class="panel-body">
+      <table cellspacing="0" width="100%">
+
+        <thead>
+          <tr>
+            <th> Id</th>
+            <th >Ad</th>
+            <th >Soyad</th>
+            <th >Mail Adresi</th>
+            <th>Şehir</th>
+            <th> İşlemler </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{customer.customerId}}</td>
+            <td>{{customer.customerName}}</td>
+            <td>{{customer.surname}}</td>
+            <td>{{customer.mail}}</td>
+            <td>{{customer.city}}</td>
+            
+              <td><button style='margin-right:16px' (click)="deleteCustomer(customer.customerId)" class="btn btn-danger" >Sil</button>
+                <button style='margin-right:16px' (click)="edit(customer)" class="btn btn-primary" style="margin-left: 10px"  data-bs-toggle="modal" data-bs-target="#exampleModal"  >Düzenle</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+
+        <form (ngSubmit)="updateCustomer()">
+          <div class="form-group">
+            <label for="name">Müşteri Id</label>
+            <input type="number" disabled class="form-control" id="customer.customerId" required [(ngModel)]="customerToUpdate.customerId" name="customerId">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Ad</label>
+            <input type="text" class="form-control" id="customerName" required [(ngModel)]="customerToUpdate.customerName" name="customerName">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Soyad</label>
+            <input type="text" class="form-control" id="surname" required [(ngModel)]="customerToUpdate.surname" name="surname">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Mail Adresi</label>
+            <input type="text" class="form-control" id="mail" required [(ngModel)]="customerToUpdate.mail" name="mail">
+          </div>
+          <div class="form-group">
+            <label for="name">Şehir</label>
+            <input type="text" class="form-control" id="city" required [(ngModel)]="customerToUpdate.city" name="city">
+          </div>
+      
+          <button class="btn btn-success" type="submit">Kaydet</button>
+        </form>
+
+      </div>
+     
+    </div>
+  </div>
+</div>

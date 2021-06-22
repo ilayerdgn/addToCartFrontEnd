@@ -1,0 +1,80 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Ürün Listesi</h2>
+    </div>
+    <div class="panel-body">
+      <table cellspacing="0" width="100%">
+
+        <thead>
+          <tr>
+            <th> Id</th>
+            <th >Kategori Kodu</th>
+            <th >Ürün Adı</th>
+            <th >Stok</th>
+            <th >Birim Fiyat</th>
+            <th> İşlemler </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{product.productId}}</td>
+            <td>{{product.categoryId}}</td>
+            <td>{{product.productName}}</td>
+            <td>{{product.unitsInStock}}</td>
+            <td>{{product.unitPrice}}</td>
+            
+              <td><button style='margin-right:16px' (click)="deleteProduct(product.productId)" class="btn btn-danger" >Sil</button>
+                <button style='margin-right:16px' (click)="edit(product)" class="btn btn-primary" style="margin-left: 10px"  data-bs-toggle="modal" data-bs-target="#exampleModal"  >Düzenle</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+
+        <form (ngSubmit)="updateProduct()">
+          <div class="form-group">
+            <label for="name">Ürün Id</label>
+            <input type="number" disabled class="form-control" id="product.productId" required [(ngModel)]="productToUpdate.productId" name="productId">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Kategori Kodu</label>
+            <input type="number" class="form-control" id="categoryId" required [(ngModel)]="productToUpdate.categoryId" name="categoryId">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Ürün adı</label>
+            <input type="text" class="form-control" id="productName" required [(ngModel)]="productToUpdate.productName" name="productName">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Stok</label>
+            <input type="number" class="form-control" id="unitsInStock" required [(ngModel)]="productToUpdate.unitsInStock" name="unitsInStock">
+          </div>
+          <div class="form-group">
+            <label for="name">Birim Fiyat</label>
+            <input type="number" class="form-control" id="unitPrice" required [(ngModel)]="productToUpdate.unitPrice" name="unitPrice">
+          </div>
+      
+          <button class="btn btn-success" type="submit">Kaydet</button>
+        </form>
+
+      </div>
+     
+    </div>
+  </div>
+</div>

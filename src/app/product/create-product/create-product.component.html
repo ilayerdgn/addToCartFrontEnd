@@ -1,0 +1,27 @@
+<div class="col-md-6 offset-md-3">
+<h3>Yeni Ürün</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Kategori Kodu</label>
+      <input type="number" class="form-control" id="categoryId" required [(ngModel)]="product.categoryId" name="categoryId">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Ürün adı</label>
+      <input type="text" class="form-control" id="productName" required [(ngModel)]="product.productName" name="productName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Stok</label>
+      <input type="number" class="form-control" id="unitsInStock" required [(ngModel)]="product.unitsInStock" name="unitsInStock">
+    </div>
+    <div class="form-group">
+      <label for="name">Birim Fiyat</label>
+      <input type="number" class="form-control" id="unitPrice" required [(ngModel)]="product.unitPrice" name="unitPrice">
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+</div>
+</div>

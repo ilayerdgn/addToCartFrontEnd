@@ -1,0 +1,80 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Ürün Listesi</h2>
+    </div>
+    <div class="panel-body">
+      <table cellspacing="0" width="100%">
+
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th >Müşteri Id</th>
+            <th >Yetkili Id</th>
+            <th >Sipariş Tarihi</th>
+            <th >Gönderilecek Şehir</th>
+            <th> İşlemler </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{order.orderId}}</td>
+            <td>{{order.customerId}}</td>
+            <td>{{order.employeeId}}</td>
+            <td>{{order.orderDate}}</td>
+            <td>{{order.shipCity}}</td>
+            
+              <td><button style='margin-right:16px' (click)="deleteOrder(order.orderId)" class="btn btn-danger" >Sil</button>
+                <button style='margin-right:16px' (click)="edit(order)" class="btn btn-primary" style="margin-left: 10px"  data-bs-toggle="modal" data-bs-target="#exampleModal"  >Düzenle</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Güncelle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+
+        <form (ngSubmit)="updateOrder()">
+          <div class="form-group">
+            <label for="name">Sipariş Id</label>
+            <input type="number" disabled class="form-control" id="order.orderId" required [(ngModel)]="orderToUpdate.orderId" name="orderId">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Müşteri Id</label>
+            <input type="number" class="form-control" id="customerId" required [(ngModel)]="orderToUpdate.customerId" name="customerId">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Yetkili Id</label>
+            <input type="number" class="form-control" id="employeeId" required [(ngModel)]="orderToUpdate.employeeId" name="employeeId">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">Sipariş Tarihi</label>
+            <input type="text" class="form-control" id="orderDate" required [(ngModel)]="orderToUpdate.orderDate" name="orderDate">
+          </div>
+          <div class="form-group">
+            <label for="name">Gönderilecek Şehir</label>
+            <input type="text" class="form-control" id="shipCity" required [(ngModel)]="orderToUpdate.shipCity" name="shipCity">
+          </div>
+      
+          <button class="btn btn-success" type="submit">Kaydet</button>
+        </form>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
